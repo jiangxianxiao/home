@@ -2,8 +2,24 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Home by livoras</title>
+    <title>Home by Livoras</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #f7f7f7;
+      }
+      #main {
+        font-size: 16px;
+        margin-top: 150px;
+        padding: 10px;
+        text-align: center;
+        line-height: 20px;
+      }
+    </style>
   </head>
   <style type="text/css">
   * {
@@ -20,14 +36,18 @@
   </style>
   <body>
     <div id="main">
-     <div><h3>Too young, too simple. Sometimes, naive.</h3></div>
-     <br />
-     <div>=================================================</div>
-     <br />
-     <div><a href="https://github.com/livoras">Github</a> | <a href="https://www.zhihu.com/people/livoras.com">Zhihu</a> | <a href="https://github.com/livoras/blog">Blog</a> | Email: me@livoras.com</div>
+      <h3> Too young, too simple. Sometimes, naive. </h3> <br/>
+      <a href="https://github.com/livoras">Github</a> |
+      <a href="https://github.com/livoras/blog/issues">Blog</a> |
+      <a href="https://www.zhihu.com/people/livoras.com">Zhihu</a> |
+      <a href="mailto:me@livoras.com">Email: me@livoras.com</a>
     </div>
   </body>
-  <script type="text/javascript">
-    console.log('uf')
+  <script>
+    var capture = window.location.search.match(/\?post=(\d+)/)
+    var postid = capture ? capture[1] : null
+    if (postid) {
+      window.location.href = 'https://github.com/livoras/blog/issues/' + postid
+    }
   </script>
 </html>
