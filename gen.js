@@ -1,17 +1,27 @@
 'use strict'
 
 const Genea = require('genea')
+const alphabetArr = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ., '.split('')
+const alphabet = (() => {
+  const alphabet = {}
+  alphabetArr.forEach((ch, i) => {
+    alphabet[ch] = i
+  })
+  return alphabet
+})()
 
 function getTargetStr (targetStr) {
-    var binaryStr = '';
+    var binaryStr = ''
     for (var i = 0 , len = targetStr.length; i < len; i++) {
-        binaryStr += paddingWith0((Number(targetStr.charCodeAt(i))).toString(2))
+      const ch = targetStr[i]
+      const chIndex = alphabet[ch]
+      binaryStr += paddingWith0((Number(chIndex).toString(2)))
     }
-    return binaryStr;
+    return binaryStr
 }
 
 function paddingWith0 (num) {
-    while (num.length < 8) {
+    while (num.length < 6) {
         num = '0' + num
     }
     return num
@@ -23,19 +33,15 @@ function run (str) {
       geneLength: tar.length,
       mutateProbability: 0.5,
       doneFitness: 1,
-      populationSize: 30,
+      populationSize: 20,
       generationsSize: 400,
       getFitness: function(gene) {
         var count = 0
         for (var i = 0, len = gene.length; i < len; i++) {
             if (gene[i] === tar[i]) count++
         }
-        // console.log(toChars(gene))
         const likeness = count / tar.length
         return likeness
-      },
-      done: function(genes) {
-        // this.history.push(toChars(genes[0].gene + ''))
       },
       onGeneration: function(generation, genes) {
         var max = 0, index = 0;
@@ -46,23 +52,25 @@ function run (str) {
           }
         })
         this.history.push(toChars(genes[index]))
-      },
-      outOfGenerationsSize: function(generations, fitnesses) {
-        // console.log(generations, fitnesses)
       }
     })
 
     ga.history = []
     ga.start()
-    return ga;
+    return ga
 }
 
 function toChars (gene) {
     var str = ''
     while (gene.length) {
-        var ch = gene.substr(0, 8)
-        gene = gene.substr(8)
-        str += String.fromCharCode(parseInt(ch, 2))
+        var ch = '00' + gene.substr(0, 6)
+        gene = gene.substr(6)
+        var chIndex = parseInt(ch, 2)
+        if (chIndex >= alphabetArr.length) {
+          chIndex = Math.floor(Math.random() * (alphabetArr.length - 1))
+        }
+        if (!alphabetArr[chIndex]) console.log(chIndex, parseInt(ch, 2))
+        str += alphabetArr[chIndex]
     }
     return str
 }
