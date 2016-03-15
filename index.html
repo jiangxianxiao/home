@@ -29,25 +29,33 @@
   body {
     background-color: #f7f7f7;
     font-size: 13px;
+    font-family: arial,sans-serif;
+  }
+  h3 {
+    height: 60px;
   }
   #main {
     text-align: center;
   }
+  a {
+    color: #737386;
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  a.small {
+    color: #8C2727;
+    font-size: 12px;
+  }
   </style>
   <body>
     <div id="main">
-      <h3> Too young, too simple. Sometimes, naive. </h3> <br/>
+      <h3 id="head"> ... </h3> <br/>
       <a href="https://github.com/livoras">Github</a> |
       <a href="https://github.com/livoras/blog/issues">Blog</a> |
       <a href="https://www.zhihu.com/people/livoras.com">Zhihu</a> |
-      <a href="mailto:me@livoras.com">Email: me@livoras.com</a>
+      <a href="mailto:me@livoras.com">Email: me@livoras.com</a> <br />
+      <a class="small" href="https://github.com/livoras/genea">How this page works</a>
     </div>
   </body>
-  <script>
-    var capture = window.location.search.match(/\?post=(\d+)/)
-    var postid = capture ? capture[1] : null
-    if (postid) {
-      window.location.href = 'https://github.com/livoras/blog/issues/' + postid
-    }
-  </script>
+  <script src="./index.js"></script>
 </html>
