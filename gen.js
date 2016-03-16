@@ -1,5 +1,13 @@
 'use strict'
 
+/**
+ * Using Genetic Algorithm to generate lots of random strings
+ * and make them evolve towards the target string.
+ *
+ * The main functionality of Genetic Algorithm is abstracted into an individual
+ * NPM module and is hosted on [Github](https://github.com/livoras/genea)
+ */
+
 const Genea = require('genea')
 const alphabetArr = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ., '.split('')
 const alphabet = (() => {
